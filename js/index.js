@@ -16,7 +16,6 @@ function calculoTiempoDeLlegada(){
         alert("Falta Ingresar Kilomtros.Redirigiendo...")
         costoEnvio();
     }else{
-        console.log("Entro aca")
         let tiempoEnvio = (producto.length) + costoDelEnvio
 
         alert("Tiempo de envio estimado : " + tiempoEnvio + "Hs.")
@@ -37,7 +36,7 @@ function calcularPrecio(precio){
     let opcion
     do{opcion = parseInt(prompt("¿Desea calcular precio + envio? 1-SI , 2-NO"))
         if(opcion != 2 && opcion != 1){
-        alert("Opcion invalida . Elija una opcion valida")
+            alert("Opcion invalida . Elija una opcion valida")
         }
 
         if(opcion == 1 ){
@@ -45,16 +44,18 @@ function calcularPrecio(precio){
             if(costoDelEnvio == null){
                 costoEnvio();
             }
+
             let precioTotalConEnvio = calcularPrecioMasEnvio(precioProducto  , cantidadProducto , costoDelEnvio)
-            alert(`El costo total del pedido Con0 entrega es de : ${precioTotalConEnvio}\$` )
+            alert(`El costo total del pedido Con entrega es de : ${precioTotalConEnvio}\$` )
+
         }else if(opcion == 2){
+
             let precioTotal= cantidadProducto * precioProducto
             alert(`El costo total del pedido sin entrega es de : ${precioTotal}\$` )
+
         }else {
             alert("Opcion invalida . Elija una opcion valida") 
         }
-
-    
 
     }while(opcion !=1 && opcion !=2)
     return;
@@ -79,9 +80,13 @@ function costoEnvio(){
             costoDelEnvio = 1500
 
         }else if (distancia >=400 && distancia <900){ 
+
             costoDelEnvio = 1000
+
         }else if (distancia >0 && distancia < 400){
+
             costoDelEnvio = 500
+
         }
 
     }while(distancia <= 0)
@@ -90,27 +95,30 @@ function costoEnvio(){
 
 //FUNCION QUE MUESTRA EL PRODUCTO INGRESADO
 function mostrarProducto(producto , precioProducto , cantidad){
-    return alert("Producto Ingresado : " + producto + " ; " + "Precio : " + precioProducto + " ; " + "Cantidad : " + cantidad )
+
+    return alert("Producto Ingresado : " + producto + " ; " + "Precio : " + "$" + precioProducto + " ; " + "Cantidad : " + cantidad )
+
 }
+
 
 
 //FUNCION QUE ALMACENA EL PRODUCTO 
 function almacenarProducto(){
     let opcion
     do{
-    producto = prompt("Ingrese producto")
-    precioProducto = parseFloat(prompt("Ingrese Precio"))
-    cantidadProducto = parseInt(prompt("Ingrese Cantidad")) 
+        producto = prompt("Ingrese producto")
+        precioProducto = parseFloat(prompt("Ingrese Precio"))
+        cantidadProducto = parseInt(prompt("Ingrese Cantidad")) 
 
-    mostrarProducto(producto , precioProducto , cantidadProducto);
+        mostrarProducto(producto , precioProducto , cantidadProducto);
 
     
-    do{opcion = parseInt(prompt("¿Datos Ingresados correctamente ? 1-SI , 2-NO"))
-        if(opcion != 2 && opcion != 1){
-            alert("Opcion invalida . Elija una opcion valida")
-        }
+        do{opcion = parseInt(prompt("¿Datos Ingresados correctamente ? 1-SI , 2-NO"))
+            if(opcion != 2 && opcion != 1){
+                alert("Opcion invalida . Elija una opcion valida")
+            }
 
-    }while(opcion !=1 && opcion !=2)
+        }while(opcion !=1 && opcion !=2)
     
     }while(opcion != 1 );
   
@@ -118,7 +126,7 @@ function almacenarProducto(){
 }
 
 
- //MENU
+//MENU
 do{entrada = parseInt(prompt("Elija una opcion: 1) agregar Producto 2)calcular costo de envio 3)Calcular precio total 4)Calcular tiempo de llegada 0)Salir "))
     
     
@@ -139,7 +147,6 @@ do{entrada = parseInt(prompt("Elija una opcion: 1) agregar Producto 2)calcular c
         break;
         
         case 4:
-            //calculo de tiempo de llegada : Con previo ingreso de producto e ingreso de Km . Tiempo de entrega = (relacion 2 horas por letra ) + cantidad de kilometros 
             calculoTiempoDeLlegada()
         break;
 
